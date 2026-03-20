@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { addAnecdote } from "../anecdotesSlice";
+import { addAnecdote } from "../reducers/anecdotesReducer";
+import { showNotification } from "../reducers/notificationReducer";
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const AnecdoteForm = () => {
     const newAnecdote = inputRef.current.value.trim();
     if (newAnecdote) {
       dispatch(addAnecdote(newAnecdote));
+      dispatch(showNotification(`${newAnecdote} Added`))
       inputRef.current.value = "";
     }
   };
